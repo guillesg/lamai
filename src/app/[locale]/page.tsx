@@ -7,12 +7,23 @@ import Services from "@/components/Services";
 import Testimonials from "@/components/Testimonials";
 import WhatsAppButton from "@/components/WhatsappButton";
 
+export function generateStaticParams() {
+  return [
+    { locale: "es" },
+    { locale: "en" },
+  ];
+}
+
 export default async function Page({
-  params
+  params,
 }: {
   params: Promise<{ locale: "es" | "en" }>;
 }) {
   const { locale } = await params;
+
+  if (locale !== "es" && locale !== "en") {
+    return null;
+  }
 
   return (
     <>
