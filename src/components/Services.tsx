@@ -1,5 +1,7 @@
 "use client";
 
+import React from "react";
+
 function LotusIcon() {
   return (
     <svg
@@ -41,19 +43,10 @@ function LeafIcon() {
         strokeLinecap="round"
         strokeLinejoin="round"
       >
-        {/* Rama */}
         <path d="M32 52C32 44 32 36 32 20" />
-
-        {/* Hoja superior */}
         <path d="M32 20C38 18 43 14 46 8C39 8 34 11 32 20Z" />
-
-        {/* Hoja izquierda */}
         <path d="M32 28C25 25 19 23 14 18C15 27 21 32 32 33Z" />
-
-        {/* Hoja derecha */}
         <path d="M32 34C39 31 45 28 50 23C49 32 43 37 32 39Z" />
-
-        {/* Hoja inferior izquierda */}
         <path d="M32 42C27 40 23 38 20 34C21 40 25 45 32 46Z" />
       </g>
     </svg>
@@ -75,10 +68,7 @@ function DropIcon() {
         strokeLinecap="round"
         strokeLinejoin="round"
       >
-        {/* Gota */}
         <path d="M32 10C32 10 22 24 22 34C22 41 26.5 47 32 47C37.5 47 42 41 42 34C42 24 32 10 32 10Z" />
-
-        {/* Ondas */}
         <path d="M18 54C21 52 24 52 27 54C30 56 34 56 37 54C40 52 43 52 46 54" />
       </g>
     </svg>
@@ -100,13 +90,8 @@ function SparklesIcon() {
         strokeLinecap="round"
         strokeLinejoin="round"
       >
-        {/* Estrella principal */}
         <path d="M32 12L34.5 22L44 24.5L34.5 27L32 37L29.5 27L20 24.5L29.5 22L32 12Z" />
-
-        {/* Estrella pequeña superior derecha */}
         <path d="M49 14L50 18L54 19L50 20L49 24L48 20L44 19L48 18L49 14Z" />
-
-        {/* Estrella pequeña inferior izquierda */}
         <path d="M16 39L17 43L21 44L17 45L16 49L15 45L11 44L15 43L16 39Z" />
       </g>
     </svg>
@@ -114,15 +99,15 @@ function SparklesIcon() {
 }
 
 export default function Services({ locale }: { locale: "es" | "en" }) {
-  const bookingLink = "#";
+  const phone = "34694253913";
+
+  const createWhatsAppLink = (message: string) =>
+    `https://wa.me/${phone}?text=${encodeURIComponent(message)}`;
 
   const services = [
     {
       icon: <LotusIcon />,
-      name:
-        locale === "es"
-          ? "La Solución Tailandesa"
-          : "The Thai Solution",
+      name: locale === "es" ? "La Solución Tailandesa" : "The Thai Solution",
 
       description:
         locale === "es"
@@ -134,6 +119,12 @@ export default function Services({ locale }: { locale: "es" | "en" }) {
         { duration: "90 min", price: "130€" },
         { duration: "120 min", price: "160€" },
       ],
+
+      bookingLink: createWhatsAppLink(
+        locale === "es"
+          ? "Hola, me gustaría reservar una cita para La Solución Tailandesa."
+          : "Hello, I would like to book an appointment for The Thai Solution.",
+      ),
     },
 
     {
@@ -146,14 +137,17 @@ export default function Services({ locale }: { locale: "es" | "en" }) {
           : "While The Thai Solution focuses on targeted healing, Thai Ayuwattana Massage is designed to maintain overall wellbeing. It helps relieve muscle tension, headaches, improve sleep quality, and reduce stress.",
 
       prices: [{ duration: "90 min", price: "100€" }],
+
+      bookingLink: createWhatsAppLink(
+        locale === "es"
+          ? "Hola, me gustaría reservar una cita para Thai Ayuwattana Massage."
+          : "Hello, I would like to book an appointment for Thai Ayuwattana Massage.",
+      ),
     },
 
     {
       icon: <DropIcon />,
-      name:
-        locale === "es"
-          ? "Drenaje Linfático"
-          : "Lymphatic Drainage",
+      name: locale === "es" ? "Drenaje Linfático" : "Lymphatic Drainage",
 
       description:
         locale === "es"
@@ -164,14 +158,17 @@ export default function Services({ locale }: { locale: "es" | "en" }) {
         { duration: "60 min", price: "65€" },
         { duration: "90 min", price: "95€" },
       ],
+
+      bookingLink: createWhatsAppLink(
+        locale === "es"
+          ? "Hola, me gustaría reservar una cita para un Drenaje Linfático."
+          : "Hello, I would like to book a Lymphatic Drainage treatment.",
+      ),
     },
 
     {
       icon: <SparklesIcon />,
-      name:
-        locale === "es"
-          ? "Masaje Reductor"
-          : "Body Sculpting Massage",
+      name: locale === "es" ? "Masaje Reductor" : "Body Sculpting Massage",
 
       description:
         locale === "es"
@@ -182,24 +179,21 @@ export default function Services({ locale }: { locale: "es" | "en" }) {
         { duration: "60 min", price: "65€" },
         { duration: "90 min", price: "95€" },
       ],
+
+      bookingLink: createWhatsAppLink(
+        locale === "es"
+          ? "Hola, me gustaría reservar una cita para un Masaje Reductor."
+          : "Hello, I would like to book a Body Sculpting Massage.",
+      ),
     },
   ];
 
   return (
-    <section
-      id="services"
-      className="bg-[#f3efe9] py-32 px-6 md:px-16"
-    >
+    <section id="services" className="bg-[#f3efe9] py-32 px-6 md:px-16">
       <div className="max-w-7xl mx-auto">
-
-        {/* HEADER */}
-
         <div className="text-center max-w-2xl mx-auto">
-
           <h2 className="text-4xl md:text-5xl font-semibold text-[#4a1f14]">
-            {locale === "es"
-              ? "Nuestros Servicios"
-              : "Our Services"}
+            {locale === "es" ? "Nuestros Servicios" : "Our Services"}
           </h2>
 
           <p className="mt-5 text-gray-600 text-lg">
@@ -209,78 +203,50 @@ export default function Services({ locale }: { locale: "es" | "en" }) {
           </p>
 
           <div className="w-24 h-[2px] bg-[#d4af37] mx-auto mt-8" />
-
         </div>
 
-        {/* CARDS */}
-
         <div className="grid md:grid-cols-2 xl:grid-cols-4 gap-8 mt-20">
-
           {services.map((service, i) => (
-
             <div
               key={i}
               className="bg-white rounded-3xl shadow-lg hover:-translate-y-2 hover:shadow-2xl transition-all duration-300 p-8 flex flex-col"
             >
-
-              <div className="w-20 h-20 rounded-full bg-[#d4af37]/15 flex items-center justify-center text-4xl mx-auto">
-
+              <div className="w-20 h-20 rounded-full bg-[#d4af37]/15 border border-[#d4af37]/20 flex items-center justify-center mx-auto">
                 {service.icon}
-
               </div>
 
               <h3 className="mt-6 text-2xl font-semibold text-center text-[#4a1f14]">
-
                 {service.name}
-
               </h3>
 
               <p className="mt-4 text-gray-600 text-center text-sm leading-7 flex-grow">
-
                 {service.description}
-
               </p>
 
               <div className="mt-8 border-t border-gray-200 pt-5 space-y-3">
-
                 {service.prices.map((price, index) => (
-
                   <div
                     key={index}
                     className="flex justify-between text-[#4a1f14]"
                   >
-
                     <span>{price.duration}</span>
 
-                    <span className="font-semibold">
-
-                      {price.price}
-
-                    </span>
-
+                    <span className="font-semibold">{price.price}</span>
                   </div>
-
                 ))}
-
               </div>
 
               <a
-                href={bookingLink}
+                href={service.bookingLink}
+                target="_blank"
+                rel="noopener noreferrer"
                 className="mt-8 w-full text-center bg-[#d4af37] text-black py-3 rounded-xl font-semibold hover:bg-[#c79f2e] transition"
               >
-
-                {locale === "es"
-                  ? "Reservar"
-                  : "Book Now"}
-
+                {locale === "es" ? "Reservar" : "Book Now"}
               </a>
-
             </div>
-
           ))}
-
         </div>
-
       </div>
     </section>
   );
